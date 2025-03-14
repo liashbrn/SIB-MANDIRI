@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Luas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Kalkulator Luas</h2>
+        
+        <h3>Persegi Panjang</h3>
+        <input type="number" id="panjang" placeholder="Masukkan panjang">
+        <input type="number" id="lebar" placeholder="Masukkan lebar">
+        <button onclick="hitungPersegiPanjang()">Hitung</button>
+        <p id="hasilPersegiPanjang"></p>
+        
+        <h3>Bujur Sangkar</h3>
+        <input type="number" id="sisi" placeholder="Masukkan sisi">
+        <button onclick="hitungBujurSangkar()">Hitung</button>
+        <p id="hasilBujurSangkar"></p>
+        
+        <h3>Segitiga</h3>
+        <input type="number" id="alas" placeholder="Masukkan alas">
+        <input type="number" id="tinggi" placeholder="Masukkan tinggi">
+        <button onclick="hitungSegitiga()">Hitung</button>
+        <p id="hasilSegitiga"></p>
+    </div>
+
+    <script>
+        function hitungPersegiPanjang() {
+            let panjang = document.getElementById("panjang").value;
+            let lebar = document.getElementById("lebar").value;
+            let luas = panjang * lebar;
+            document.getElementById("hasilPersegiPanjang").innerText = "Luas: " + luas;
+        }
+
+        function hitungBujurSangkar() {
+            let sisi = document.getElementById("sisi").value;
+            let luas = sisi * sisi;
+            document.getElementById("hasilBujurSangkar").innerText = "Luas: " + luas;
+        }
+
+        function hitungSegitiga() {
+            let alas = document.getElementById("alas").value;
+            let tinggi = document.getElementById("tinggi").value;
+            let luas = 0.5 * alas * tinggi;
+            document.getElementById("hasilSegitiga").innerText = "Luas: " + luas;
+        }
+    </script>
+</body>
+</html>
