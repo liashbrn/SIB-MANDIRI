@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Produk</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        input, button { margin: 5px; padding: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+    <h2>Manajemen Produk</h2>
+    <input type="text" id="nama" placeholder="Nama Produk">
+    <input type="number" id="harga" placeholder="Harga">
+    <button onclick="eventHandler.tambah()">Tambah Produk</button>
+    <br>
+    <input type="number" id="hapusId" placeholder="ID Produk">
+    <button onclick="eventHandler.hapus()">Hapus Produk</button>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Harga</th>
+            </tr>
+        </thead>
+        <tbody id="produkTable"></tbody>
+    </table>
+    <script>
+        let produkList = [
+            { id: 1, nama: "Laptop", harga: 12000000 },
+            { id: 2, nama: "Smartphone", harga: 5000000 },
+            { id: 3, nama: "Tablet", harga: 7000000 },
+            { id: 4, nama: "Smartwatch", harga: 3000000 },
+            { id: 5, nama: "Earphone", harga: 500000 }
+        ];
+
+        function renderProduk() {
+            const tableBody = document.getElementById("produkTable");
+            tableBody.innerHTML = "";
+            produkList.forEach(({ id, nama, harga }) => {
+                let row = `<tr><td>${id}</td><td>${nama}</td><td>Rp${harga}</td></tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function tambahProduk() {
+            let nama = document.getElementById("nama").value;
+            let harga = parseInt(document.getElementById("harga").value);
+            if (nama && harga) {
+                let id = produkList.length ? produkList[produkList.length - 1].id + 1 : 1;
+                produkList = [...produkList, { id, nama, harga }];
+                renderProduk();
+            }
+        }
+
+        function hapusProduk() {
+            let id = parseInt(document.getElementById("hapusId").value);
+            produkList = produkList.filter(produk => produk.id !== id);
+            renderProduk();
+        }
+
+        const eventHandler = {
+            tambah: tambahProduk,
+            hapus: hapusProduk
+        };
+
+        renderProduk();
+    </script>
+</body>
+</html>
